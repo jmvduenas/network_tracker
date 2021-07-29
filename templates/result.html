@@ -1,0 +1,23 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+	</head>
+	<body>
+		<h1>Search results</h1><br /><br />
+        <br />
+		<form role="form" action="" method="POST">
+		    {% csrf_token %}
+			,<table class="table table-bordered table-striped">
+				<ul>
+                    {% for result in results %}
+                      <li>
+                        {{ results.department }}, {{ results.ip }},{{ results.gateway }}, {{ results.device }},{{ results.configured }}, {{ results.date }},{{ results.remarks }},
+                      </li>
+                    {% endfor %}
+                  </ul>
+				</tbody>
+			</table>
+		</form>
+        <a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
+	</body>
+</html>

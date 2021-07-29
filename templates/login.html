@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+      <meta charset="utf-8">
+        <title>CSSP Network Tracker</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    </head >
+    <div id="header"><h1 style="text-align:center">{% load static %}<img src="{% static 'media/CSSP_Logo.jpg' %}" alt="logo" width="87" height="80"/><img src="{% static 'media/up.png' %}" alt="logo" width="80" height="80"/></div>
+        <div id="header2"><h1 style="text-align:center">College of Social Sciences and Philosopy</h1></div>
+        <div id="header3"><h4 style="text-align:center">Computer Laboratory Network Tracker</h3></div><br><br>
+
+    
+    <body>
+      <div class="container" align="center">
+        <form action = "" method = "POST"><br>
+          {% csrf_token %}
+          <b>Username: <input type="textbox" placeholder="Username..." name="username" class="fasfa-user"></b><br><br>
+          <b>Password: <input type="password" placeholder="Password..." name="password"></b><br><br>
+          <input type ="submit" class="btn btn-primary" value="submit">
+        </form>
+          {% for message in messages %}
+            <p id='message'>{{ message }}</p>
+          {% endfor %}
+      </div>    
+      <br>
+      <br>
+      <!--<div id="pics" align="center">
+        <a href="https://www.facebook.com/" target="_blank"><img src="http://localhost/tuts/pics/fb.jpg"." " alt="fb logo" width="50" height="50"></a>
+        <a href="https://www.instagram.com/accounts/login/" target="_blank"><img src="http://localhost/tuts/pics/ig.png"." " alt="fb logo" width="50" height="50"></a>
+        <a href="https://www.youtube.com/channel/UCZFMHVffvO6rikV9kuwxUvQ" target="_blank"><img src="http://localhost/tuts/pics/yt.jpg"." " alt="fb logo" width="50" height="50"></a>
+      </div>-->
+
+
+</html>
