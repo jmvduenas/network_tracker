@@ -1,5 +1,6 @@
+
 from django.shortcuts import get_object_or_404, redirect, render
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, response
 from ip_tracker.models import Network
 from django.urls import reverse, reverse_lazy
 from ip_tracker.forms import NetworkForm
@@ -8,6 +9,19 @@ from .filters import NetworkFilter
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+import csv
+
+#CSV button 
+def view_csv(request):
+	response = HttpResponse(content_type='csv')
+	response['Content-Disposition'] = 'attachment; filename=views.csv'
+	writer = csv.writer(response)
+	objects = Network.objects.all()
+	writer.writerow(['Department', 'Device', 'IP Address', 'Gateway', 'Serial Number', 'Configured by', 'Date Configured', 'Comments'])
+	for object in objects:
+		writer.writerow([ object.office, object.device, object.ip_address, object.gateway, object.serial_number, object.configured, object.date, object.remarks])
+	return response
+
 
 def login_page(request):
 	if request.method == 'POST':
@@ -50,7 +64,7 @@ def view_network(request):
 
 @login_required(login_url='login')
 def add_ip_address(request):
-	form = NetworkForm(request.POST or None)
+	form = NetworkForm(request.POST, request.FILES)
 	if form.is_valid():
 		form.save()
 		return HttpResponseRedirect(reverse('home'))
@@ -75,7 +89,7 @@ def update_details(request, pk):
 	obj = Network.objects.get(id=pk)
 	form = NetworkForm(instance=obj)
 	if request.method == "POST":
-		form = NetworkForm(request.POST, instance=obj)
+		form = NetworkForm(request.POST, request.FILES, instance=obj)
 		if form.is_valid():
 				form.save()
 		return HttpResponseRedirect(reverse('home'))
@@ -95,5 +109,3 @@ def delete_ip_address(request, pk):
 	return render(request, 'delete.html', {})
 
 
-
-	

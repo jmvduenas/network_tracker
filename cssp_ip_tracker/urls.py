@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.conf.urls import include, url
 from django.urls import path
-from ip_tracker.views import home_view, add_ip_address, delete_ip_address, view_details, update_details, view_network, login_page, logout_user
+from ip_tracker.views import home_view, add_ip_address, delete_ip_address, view_details, update_details, view_network, login_page, logout_user, view_csv
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
@@ -31,7 +31,6 @@ urlpatterns = [
     path('view/<int:pk>/', view_details, name = 'view'),
     path('update/<int:pk>/', update_details, name = 'update'),
     path('delete/<int:pk>/', delete_ip_address, name = 'delete'),
+    path('view_csv', view_csv, name = 'csv'),
 ]
-urlpatterns += staticfiles_urlpatterns()  
-urlpatterns += static(settings.MEDIA_URL,
-                              document_root=settings.MEDIA_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

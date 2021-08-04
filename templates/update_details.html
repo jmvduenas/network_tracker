@@ -3,21 +3,24 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
 <title>CSSP Network Tracker</title>
 	
-	<head class="head">
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-		<div class='main'>	
-			<div id="header1"><h1 style="text-align:center">{% load static %}<img src="{% static 'media/CSSP_Logo.jpg' %}" alt="logo" width="90" height="80"/><img src="{% static 'media/up.png' %}" alt="logo" width="80" height="80"/></div>
-			<div id="header2"><h1 style="text-align:center">College of Social Sciences and Philosopy</h1></div>
-			<div id="header3"><h4 style="text-align:center">Computer Laboratory Network Tracker - Update details</h3></div>
+		<div class="main_header">	
+			<head>
+				<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">	
+				<div id="header1"><h1 style="text-align:center">{% load static %}<img src="{% static 'media/CSSP_Logo.png' %}" alt="logo" width="90" height="80"/><img src="{% static 'media/up.png' %}" alt="logo" width="80" height="80"/></div>
+				<div id="header2"><h1 style="text-align:center">College of Social Sciences and Philosopy</h1></div>
+				<div id="header3"><h4 style="text-align:center">Computer Laboratory Network and Assets Tracker - Update</h3></div>
+			</head>
 		</div>
-	</head>
 	<style>
-		.head{
-			width:50%;
-		}
+		.main_header{
+			background-color: maroon;
+			color: white;
+			height: 200px;	
+  			box-shadow: 0px 5px gray;
+		}		
 		.main{
 		   display: block;
 		   top: 40px;
@@ -34,13 +37,17 @@
 	   </style>
 	<body>
 		<div class="main">
-			<form role="form" action="" method="POST">
+			<form role="form" action="" method="POST" enctype="multipart/form-data">
 				{% csrf_token %}
 				<table class="table table-bordered table-striped">
 					<tbody>
 						<tr>
 							<th>Department</th>
 							<th>{{ form.office }}</th>
+						</tr>
+						<tr>
+							<th>Equipment</th>
+							<th>{{ form.device }}</th>
 						</tr>
 						<tr>
 							<th>IP Address</th>
@@ -51,8 +58,8 @@
 							<th>{{ form.gateway }}</th>
 						</tr>
 						<tr>
-							<th>Device Assigned</th>
-							<th>{{ form.device }}</th>
+							<th>Serial Number</th>
+							<th>{{ form.serial_number }}</th>
 						</tr>
 						<tr>
 							<th>Configured by</th>
@@ -66,6 +73,10 @@
 							<th>Comments</th>
 							<th>{{ form.remarks }}</th>
 						</tr>
+						<tr>
+							<th>Device Image</th>
+							<th>{{ form.images }}</th>
+						</tr>
 					</tbody>
 				</table>
 				<a href="{% url 'home' %}" class="btn btn-secondary">Back</a> <button input type="submit" class="btn btn-success">Save</button>
@@ -73,7 +84,7 @@
 		</div>
 		<div>
 			<footer><br><br><br><br>
-				<p style="text-align:center">{% load static %}<img src="{% static 'media/CSSP_logo.jpg' %}" alt="logo" width="25" height="25" />Copyright &copy; 2021 CSSP Computer Laboratory</p>
+				<p style="text-align:center">{% load static %}<img src="{% static 'media/CSSP_logo.png' %}" alt="logo" width="25" height="25" />Copyright &copy; 2021 CSSP Computer Laboratory</p>
 			</footer>
 		</div>
 	</body>
